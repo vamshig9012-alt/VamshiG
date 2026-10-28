@@ -1282,6 +1282,29 @@
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
+        
+                // Disable Right-Click Context Menu
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            alert("🔒 Code is protected ");
+        });
+
+        // Disable Common Keyboard Shortcuts for Inspect/View Source (F12, Ctrl+Shift+I, Ctrl+U, etc.)
+        document.addEventListener('keydown', function (e) {
+            // F12 key
+            if (e.key === 'F12') {
+                e.preventDefault();
+            }
+            // Ctrl+Shift+I or Ctrl+Shift+J or Ctrl+Shift+C (DevTools)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J' || e.key === 'i' || e.key === 'c' || e.key === 'j')) {
+                e.preventDefault();
+            }
+            // Ctrl+U (View Source)
+            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+                e.preventDefault();
+            }
+        });
+        
     </script>
 </body>
 </html>
