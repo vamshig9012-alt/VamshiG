@@ -948,6 +948,27 @@
             letter-spacing: 0.25em;
             background: rgba(10, 6, 18, 0.95);
         }
+        
+/* Discourage casual text selection */
+body {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Keep form fields selectable if you add any later */
+input,
+textarea {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+/* Prevent dragging images */
+img {
+    -webkit-user-drag: none;
+    user-drag: none;
+        }
+            
     </style>
 </head>
 <body>
@@ -1282,28 +1303,27 @@
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
-        
-                // Disable Right-Click Context Menu
+
+                // Unified Anti-Snooping & Protection Suite
         document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
-            alert("🔒 Code is protected ");
+            alert("🔒 Personal Invitation.CODE IS PROTECTED 🔒 ");
         });
 
-        // Disable Common Keyboard Shortcuts for Inspect/View Source (F12, Ctrl+Shift+I, Ctrl+U, etc.)
         document.addEventListener('keydown', function (e) {
-            // F12 key
-            if (e.key === 'F12') {
-                e.preventDefault();
-            }
-            // Ctrl+Shift+I or Ctrl+Shift+J or Ctrl+Shift+C (DevTools)
-            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J' || e.key === 'i' || e.key === 'c' || e.key === 'j')) {
-                e.preventDefault();
-            }
-            // Ctrl+U (View Source)
-            if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+            const key = e.key.toLowerCase();
+            
+            // Block F12, DevTools shortcuts, View Source, Save, and Print shortcuts
+            if (
+                e.key === 'F12' ||
+                (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(key)) ||
+                ((e.ctrlKey || e.metaKey) && ['s', 'u', 'c', 'x', 'p'].includes(key))
+            ) {
                 e.preventDefault();
             }
         });
+        
+                
         
     </script>
 </body>
