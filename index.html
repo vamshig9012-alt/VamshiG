@@ -1322,6 +1322,25 @@ img {
                 e.preventDefault();
             }
         });
+
+                // Blur screen instantly if user leaves the tab, minimizes, or opens recording/capture tools
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.body.style.filter = 'blur(25px)';
+            } else {
+                document.body.style.filter = 'none';
+            }
+        });
+
+        // Intercept window blur (triggers if user clicks outside the browser window during capture)
+        window.addEventListener('blur', function() {
+            document.body.style.filter = 'blur(25px)';
+        });
+
+        window.addEventListener('focus', function() {
+            document.body.style.filter = 'none';
+        });
+                                  
         
                 
         
